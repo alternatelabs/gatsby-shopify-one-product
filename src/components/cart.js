@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { dispatch } from "../store"
 import { currency as currencyFormat } from "../utils/formatters"
 import Button from "./button"
+import Spinner from "./Spinner"
 
 const CartWrapper = styled.div`
   position: fixed;
@@ -51,30 +52,30 @@ const Cart = ({ open, items, isLoading, total, subtotal, currency, url }) => {
       <CartBox open={open} onClick={e => e.stopPropagation()}>
         <h3>Your Cart</h3>
 
+        <Loading open={isLoading}>
+          <Spinner />
+        </Loading>
+
         {items.length < 1 &&
           <span className="mt6 light-silver tc f3 fw6">Your shopping cart is empty.</span>
         }
-        <div className="relative">
-          {isLoading &&
-            <Loading>Updating...</Loading>
-          }
-          {items.map(item => (
-            <div key={item.id} className="flex items-center">
-              <img src={item.variant.image.src} alt={item.title} style={{ width: 80, marginBottom: 0 }} />
-              <div className="ml3">
-                <h5 style={{ marginBottom: 0 }}>{item.title}</h5>
-                <span className="f7 light-silver fw7">{item.variant.sku}</span>
-                <div className="flex justify-between items-center">
-                  <span className="fw7 f6">
-                    {currencyFormat(item.variant.priceV2.amount, item.variant.priceV2.currency)}
-                  </span>
-                  <input type="number" value={item.quantity} onChange={e => console.log("set qty", item.id, e.target.value)} style={{ width: 60 }} className="tc" />
-                  <span className="f4 fim silver fw6 pointer">&times;</span>
-                </div>
+
+        {items.map(item => (
+          <div key={item.id} className="flex items-center">
+            <img src={item.variant.image.src} alt={item.title} style={{ width: 80, marginBottom: 0 }} />
+            <div className="ml3">
+              <h5 style={{ marginBottom: 0 }}>{item.title}</h5>
+              <span className="f7 light-silver fw7">{item.variant.sku}</span>
+              <div className="flex justify-between items-center">
+                <span className="fw7 f6">
+                  {currencyFormat(item.variant.priceV2.amount, item.variant.priceV2.currency)}
+                </span>
+                <input type="number" value={item.quantity} onChange={e => dispatch.cart.updateItem({ id: item.id, quantity: parseInt(e.target.value) })} style={{ width: 60 }} className="tc" />
+                <span className="f4 fim silver fw6 pointer" onClick={e => dispatch.cart.removeItem({ id: item.id })}>&times;</span>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
         {items.length > 0 &&
           <div className="mt4">
@@ -92,7 +93,6 @@ const Cart = ({ open, items, isLoading, total, subtotal, currency, url }) => {
             <Button fullWidth onClick={() => { window.location.href = url }}>Checkout</Button>
           </div>
         }
-
       </CartBox>
     </CartWrapper>
   )
