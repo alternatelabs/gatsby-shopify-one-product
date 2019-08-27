@@ -16,6 +16,7 @@ const Header = ({ siteTitle, numberCartItems, toggleCart }) => (
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
       }}
+      className="flex flex-column flex-row-ns justify-between items-center-ns"
     >
       <h1 style={{ margin: 0 }}>
         <Link

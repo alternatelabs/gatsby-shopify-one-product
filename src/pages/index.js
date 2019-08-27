@@ -11,9 +11,9 @@ const IndexPage = ({ data }) => {
     <App>
       <SEO title="Home" />
       {data.shopifyProduct &&
-        <div className="flex">
+        <div className="flex flex-column flex-row-ns mb3 mb0-ns">
           <img src={data.shopifyProduct.images[0].originalSrc} alt={data.shopifyProduct.title} style={{ maxWidth: 300 }} />
-          <div className="ml4">
+          <div className="ml4-ns">
             <h1>{data.shopifyProduct.title}</h1>
             <p>{data.shopifyProduct.description}</p>
             <div>

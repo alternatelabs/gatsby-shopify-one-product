@@ -46,10 +46,27 @@ const Loading = styled.div`
   z-index: 100;
 `
 
+const CloseCross = styled.span`
+position: absolute;
+top: 16px;
+right: 20px;
+z-index: 200;
+cursor: pointer;
+width: 40px;
+height: 40px;
+line-height: 40px;
+font-size: 32px;
+color: #9b9b9b;
+font-weight: 300;
+text-align: center;
+`
+
 const Cart = ({ open, items, isLoading, total, subtotal, currency, url }) => {
   return (
     <CartWrapper onClick={() => dispatch.cart.hide()} open={open}>
       <CartBox open={open} onClick={e => e.stopPropagation()}>
+        <CloseCross onClick={() => dispatch.cart.hide()}>&times;</CloseCross>
+
         <h3>Your Cart</h3>
 
         <Loading open={isLoading}>
