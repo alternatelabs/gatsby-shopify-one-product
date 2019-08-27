@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { dispatch } from "../store"
 import { currency as currencyFormat } from "../utils/formatters"
 import Button from "./button"
-import Spinner from "./Spinner"
+import Spinner from "./spinner"
 
 const CartWrapper = styled.div`
   position: fixed;
