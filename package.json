@@ -7,6 +7,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.16",
     "@emotion/styled": "^10.0.15",
+    "@rematch/core": "^1.1.0",
     "gatsby": "^2.13.73",
     "gatsby-image": "^2.2.10",
     "gatsby-plugin-manifest": "^2.2.6",
@@ -20,6 +21,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
+    "react-redux": "^7.1.1",
     "shopify-buy": "^2.7.1",
     "tachyons": "4.10.0"
   },

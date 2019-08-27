@@ -1,12 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
+import App from "../components/app"
 import SEO from "../components/seo"
+import Button from "../components/button"
+import { dispatch } from "../store"
 
 const IndexPage = ({ data }) => {
   return (
-    <Layout>
+    <App>
       <SEO title="Home" />
       {data.shopifyProduct &&
         <div className="flex">
@@ -19,13 +21,17 @@ const IndexPage = ({ data }) => {
                 £{data.shopifyProduct.variants[0].price}
               </div>
 
-              <button onClick={() => console.log("Add to cart", data.shopifyProduct.variants[0])}>Add to cart</button>
+              <Button onClick={() => {
+                console.log("Add to cart", data.shopifyProduct.variants[0])
+                dispatch.cart.addItem({ variantId: data.shopifyProduct.variants[0].shopifyId, quantity: 1 })
+                dispatch.cart.show()
+              }}>Add to cart</Button>
             </div>
 
           </div>
         </div>
       }
-    </Layout>
+    </App>
   )
 }
 
@@ -42,6 +48,7 @@ export const pageQuery = graphql`
       description
       shopifyId
       variants {
+        shopifyId
         price
         sku
         availableForSale

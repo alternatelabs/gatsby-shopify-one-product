@@ -1,8 +1,9 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import { dispatch } from "../store"
 
-const Header = ({ siteTitle, toggleCart }) => (
+const Header = ({ siteTitle, numberCartItems, toggleCart }) => (
   <header
     style={{
       background: `rebeccapurple`,
@@ -27,10 +28,10 @@ const Header = ({ siteTitle, toggleCart }) => (
           {siteTitle}
         </Link>
       </h1>
-      <a href="#" onClick={e => {
+      <a href="#" className="white no-underline" onClick={e => {
         e.preventDefault()
-        toggleCart()
-      }}>View Cart (0)</a>
+        dispatch.cart.show()
+      }}>View Cart ({numberCartItems})</a>
     </div>
   </header>
 )
