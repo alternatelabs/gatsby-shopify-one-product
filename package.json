@@ -8,7 +8,7 @@
     "@emotion/core": "^10.0.16",
     "@emotion/styled": "^10.0.15",
     "@rematch/core": "^1.1.0",
-    "gatsby": "^2.13.73",
+    "gatsby": "^2.32.13",
     "gatsby-image": "^2.2.10",
     "gatsby-plugin-manifest": "^2.2.6",
     "gatsby-plugin-offline": "^2.2.7",
